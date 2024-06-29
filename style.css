@@ -205,7 +205,7 @@ textarea:focus{
         font-size: 25px;
     }
     body{
-        position: fixed;
+        position: absolute;
     }
 }
 
