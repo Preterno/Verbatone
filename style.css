@@ -204,6 +204,9 @@ textarea:focus{
     html{
         font-size: 25px;
     }
+    body{
+        position: fixed;
+    }
 }
 
 @media(max-width:550px){
