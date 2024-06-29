@@ -1,0 +1,211 @@
+.ibm-plex-sans-regular {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .overlock-sc-regular {
+    font-family: "Overlock SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .roboto-light {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #131311;
+    color: #fff;
+    width: 100%;
+}
+
+.header{
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar{
+    display: flex;
+    background-color: #249D9D;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem;
+    padding-left: 4.5rem;
+    padding-right: 4.5rem;
+    height: 7vh;
+}
+.name{
+    font-size: 2.75rem;
+}
+.name p{
+    margin: 0;
+    color: #131311;
+}
+.name span{
+    color: #fff;
+}
+.linked-in img{
+    height: 2.5rem;
+    vertical-align: bottom;
+    filter: invert(100%);
+}
+.linked-in a{
+    text-decoration: none;
+}
+
+.content{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    
+}
+
+.for-flex{
+    display: flex;
+    justify-content: space-between;
+    padding: 5rem;
+    gap: 3rem;
+    width: 100%;
+}
+.text-flex{
+    width: 42%;
+}
+.text-flex h1{
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.text-flex p{
+    margin: 0;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.text-flex h2{
+    margin-top: 40px;
+    font-size: 2rem;
+}
+
+.buttons{
+    display: flex;
+    gap: 1rem;
+}
+
+.buttons button{
+    border-radius: 10px;
+    font-size: 1.6rem;
+    padding: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0;
+    background-color: #8B9187;
+}
+
+.buttons img{
+    height: 1.6rem;
+    vertical-align: top;
+}
+
+.textbox-flex{
+    width: 100%;
+    background-color: #8B9187;
+    border-radius: 10px;
+    height: 90%;
+    box-shadow: 0 0 5px #249D9D;
+}
+
+.right{
+    width: 57%;
+    display: flex;
+    flex-direction: column;
+}
+
+.clear-button{
+    justify-content: right;
+    display: flex;
+    height: 9%;
+}
+.clear-button button{
+    background-color: #8B9187;
+    border: 0;
+    padding: 0%;
+    border-radius: 21px;
+}
+.clear-button button img{
+    height: 2rem;
+}
+textarea{
+    background-color: #8B9187;
+    border: 0;
+    width: 100%;
+    resize: none;
+    height: 85%;
+    padding: 0px 22px;
+    font-size: 1.5rem;
+    box-sizing: border-box;
+}
+textarea::placeholder{
+    color: #131311;
+}
+textarea:focus{
+    outline: none;
+}
+
+.options{
+    display: flex;
+    gap: 1rem;
+}
+
+.after-generate{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.generate button{
+    background-color: #249D9D;
+    font-size: 1.8rem;
+    border-radius: 15px;
+    padding: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+}
+
+
+
+@media(max-width:1180px){
+    .content{
+        height: auto;
+    }
+    .for-flex{
+        flex-direction: column;
+        gap: 5rem;
+    }
+    .text-flex,.textbox-flex,.right{
+        width: 100%;
+    }
+    textarea{
+        height: 15rem;
+    }
+}
+
+@media(max-width:855px){
+    .navbar,.for-flex{
+        padding-left: 2.25rem;
+        padding-right: 2.25rem;
+    }
+}
+
+@media(max-width:550px){
+    .navbar,.for-flex{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

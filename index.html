@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Overlock+SC&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>VerbaTone</title>
+  </head>
+  <body>
+    <section class="header">
+      <div class="navbar">
+        <div class="name">
+          <p class="overlock-sc-regular"><span>Verba</span>Tone</p>
+        </div>
+        <div class="linked-in">
+          <a href="#"><img src="./Assets/linkedin.svg" alt="LinkedIn" /></a>
+        </div>
+      </div>
+    </section>
+    <section class="content roboto-light">
+      <div class="for-flex">
+        <div class="text-flex">
+          <h1 class="ibm-plex-sans-regular">
+            Text to Speech using Google Translate API
+          </h1>
+          <p>
+            Experience text-to-speech with Google Translate API, supporting
+            multiple languages for clear, natural audio. Integration enhances
+            accessibility and interactivity.
+          </p>
+          <h2 class="ibm-plex-sans-regular">
+            Select a method to convert your text into speech
+          </h2>
+          <div class="buttons">
+            <button><img src="./Assets/text.svg" /> Text Input</button>
+            <button><img src="./Assets/upload.svg" /> File Upload</button>
+          </div>
+        </div>
+        <div class="right roboto-light">
+          <div class="textbox-flex">
+            <div class="clear-button">
+              <button type="reset">
+                <img src="Assets/clear.svg" alt="clear" />
+              </button>
+            </div>
+            <textarea
+              name=""
+              id=""
+              placeholder="Type or paste your text here to convert it to speech."
+            ></textarea>
+          </div>
+          <br />
+          <div class="options">
+            <div class="generate"><button>Generate</button></div>
+            <div class="after-generate">
+              <audio controls class="player">
+                <source src="./Assets/demo.mp3" type="audio/mpeg" />
+                Your browser does not support the audio tag.
+              </audio>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
