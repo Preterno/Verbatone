@@ -201,11 +201,17 @@ textarea:focus{
         padding-left: 2.25rem;
         padding-right: 2.25rem;
     }
+    html{
+        font-size: 25px;
+    }
 }
 
 @media(max-width:550px){
     .navbar,.for-flex{
         padding-left: 1rem;
         padding-right: 1rem;
+    }
+    .options{
+        flex-direction: column;
     }
 }
