@@ -200,10 +200,7 @@ textarea:focus{
     .navbar,.for-flex{
         padding-left: 2.25rem;
         padding-right: 2.25rem;
-/*     }
-    html{
-        font-size: 25px;
-    } */
+     }
     body{
         position: absolute;
     }
@@ -217,4 +214,7 @@ textarea:focus{
     .options{
         flex-direction: column;
     }
+    .for-flex {
+    padding: 30px 1rem;
+  }
 }
