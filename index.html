@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <meta name="referrer" content="no-referrer" />
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,12 +28,10 @@
       <div class="for-flex">
         <div class="text-flex">
           <h1 class="ibm-plex-sans-regular">
-            Text to Speech using Google Translate API
+            Text to Speech using Web Speech API
           </h1>
           <p>
-            Experience text-to-speech with Google Translate API, supporting
-            multiple languages for clear, natural audio. Integration enhances
-            accessibility and interactivity.
+            Explore text-to-speech capabilities powered by the Web Speech API, offering clear speech synthesis across multiple languages. Integration enhances accessibility and interactivity.
           </p>
           <h2 class="ibm-plex-sans-regular">
             Select a method to convert your text into speech
@@ -46,28 +44,41 @@
         <div class="right roboto-light">
           <div class="textbox-flex">
             <div class="clear-button">
-              <button type="reset">
+              <button id="clear">
                 <img src="Assets/clear.svg" alt="clear" />
               </button>
             </div>
             <textarea
               name=""
-              id=""
+              id="textinput"
               placeholder="Type or paste your text here to convert it to speech."
             ></textarea>
           </div>
           <br />
           <div class="options">
-            <div class="generate"><button>Generate</button></div>
-            <div class="after-generate">
-              <audio controls class="player">
-                <source src="./Assets/demo.mp3" type="audio/mpeg" />
-                Your browser does not support the audio tag.
-              </audio>
+            <div class="generate" onclick="audioPlayer()">
+              <button class="button">
+                <span>Generate</span>
+              </button>
+            </div>
+            <div class="audio-player">
+              <div id="play"><img src="./Assets/play.svg" alt="Play" /></div>
+              <div id="pause"><img src="./Assets/pause.svg" alt="Pause" /></div>
+              <div class="progress-bar">
+                <span class="progress"></span>
+              </div>
+              <div id="duration">0:00</div>
+              <div id="playback"></div>
             </div>
           </div>
         </div>
       </div>
     </section>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./index.js"></script>
   </body>
 </html>
