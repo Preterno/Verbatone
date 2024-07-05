@@ -19,9 +19,9 @@ function generateAudio(text) {
   audio = new SpeechSynthesisUtterance(text);
 }
 
-// window.speechSynthesis.onvoiceschanged = function () {
-//   voices = window.speechSynthesis.getVoices();
-// };
+window.speechSynthesis.onvoiceschanged = function () {
+  voices = window.speechSynthesis.getVoices();
+};
 
 function updateTimer() {
   elapsedTime = parseInt((performance.now() - startTime) / 1000);
@@ -75,7 +75,7 @@ function audioPlayer() {
     initialize();
   }
   $(".audio-player").show();
-  // audio.voice = voices[1];
+  audio.voice = voices[1];
   audio.volume = 1;
   speechSynthesis.speak(audio);
   startTime = performance.now();
