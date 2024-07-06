@@ -56,7 +56,7 @@ function updateTimer() {
 }
 
 $(".generate").on("click", function () {
-  alert();
+  console.log("Button clicked");
   if (playing) {
     console.log("Already playing");
     return;
