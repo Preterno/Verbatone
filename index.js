@@ -16,7 +16,7 @@ $(".audio-player").hide();
 $("#play").hide();
 
 function generateAudio(text) {
-  audio = new SpeechSynthesisUtterance(text);
+  audio = new SpeechSynthesisUtterance();
 }
 
 window.speechSynthesis.onvoiceschanged = function () {
@@ -55,7 +55,7 @@ function updateTimer() {
   $(".progress").css("width", value + "%");
 }
 
-function audioPlayer() {
+$(".generate").on("click", function () {
   if (playing) {
     console.log("Already playing");
     return;
@@ -67,7 +67,7 @@ function audioPlayer() {
     return;
   }
 
-  generateAudio(text);
+  generateAudio();
   $(".progress").css("width", "0%");
   if (durationTime && text === prevText) {
     $("#duration").text("0:00 / " + m + ":" + s);
@@ -77,6 +77,7 @@ function audioPlayer() {
   $(".audio-player").show();
   audio.voice = voices[1];
   audio.volume = 1;
+  audio.text = text;
   speechSynthesis.speak(audio);
   startTime = performance.now();
   playing = true;
@@ -102,7 +103,7 @@ function audioPlayer() {
     $("#pause").hide();
     $("#play").show();
   };
-}
+});
 
 $("#play").on("click", function () {
   $("#play").hide();
@@ -111,7 +112,7 @@ $("#play").on("click", function () {
     audioPlayer();
   } else {
     speechSynthesis.resume();
-    startTime = performance.now() - (elapsedTime * 1000) - 850;
+    startTime = performance.now() - elapsedTime * 1000 - 850;
   }
   isPaused = false;
 });
@@ -128,14 +129,14 @@ $("#clear").on("click", function () {
   clear();
 });
 
-$('textarea#textinput').bind('input propertychange', function() {
-    if(playing){
-        clear();
-    }
+$("textarea#textinput").bind("input propertychange", function () {
+  if (playing) {
+    clear();
+  }
 });
 
-function clear(){
-    speechSynthesis.cancel();
+function clear() {
+  speechSynthesis.cancel();
   $(".audio-player").hide();
   initialize();
 }
@@ -155,4 +156,3 @@ function initialize() {
   $(".progress").css("width", "0%");
   $("#duration").text("0:00");
 }
-
