@@ -68,7 +68,7 @@ body {
   width: 42%;
 }
 .text-flex h1 {
-  font-size: 2.7rem;
+  font-size: 2.5rem;
   margin: 0;
 }
 
@@ -116,6 +116,7 @@ body {
   width: 57%;
   display: flex;
   flex-direction: column;
+  gap: 1.75rem;
 }
 
 .clear-button {
@@ -240,7 +241,7 @@ button{
     width: 100%;
   }
   .textbox-flex{
-    height: 18rem;
+    height: 15rem;
   }
 }
 
@@ -278,18 +279,49 @@ button{
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  .options {
-    display: block;
+  .name {
+    font-size: 2.25rem;
   }
-  .generate{
-    margin-top: 0.8rem;
+  .linked-in img {
+    height: 2.25rem;
+  }
+  .text-flex h1{
+    font-size: 2.3rem;
+  }
+  .text-flex p{
+    font-size: 1.25rem;
+  }
+  .text-flex h2{
+    margin-top: 2rem;
+    font-size: 1.75rem;
     margin-bottom: 1rem;
   }
-  .for-flex {
-    padding: 30px 1rem;
+  .buttons button{
+    font-size: 1.4rem;
   }
-  .audio-player{
-    gap: 0.6rem;
-    font-size: 0.6rem;
+  .buttons img{
+    height: 1.4rem;
+  }
+  textarea{
+    font-size: 1.4rem;
+  }
+  
+  .generate button{
+    font-size: 1.6rem;
+    padding: 10px 15px;
+  }
+  .for-flex {
+    padding: 40px 1rem;
+    gap: 3rem;
+  }
+}
+
+@media (max-width:490px) {
+  .options {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .generate{
+    margin: 0 auto;
   }
 }
