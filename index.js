@@ -16,12 +16,12 @@ $(".audio-player").hide();
 $("#play").hide();
 
 function generateAudio(text) {
-  audio = new SpeechSynthesisUtterance();
+  audio = new SpeechSynthesisUtterance(text);
 }
 
-// window.speechSynthesis.onvoiceschanged = function () {
-//   voices = window.speechSynthesis.getVoices();
-// };
+window.speechSynthesis.onvoiceschanged = function () {
+  voices = window.speechSynthesis.getVoices();
+};
 
 function updateTimer() {
   elapsedTime = parseInt((performance.now() - startTime) / 1000);
@@ -55,8 +55,7 @@ function updateTimer() {
   $(".progress").css("width", value + "%");
 }
 
-$(".generate").on("click", function () {
-  console.log("Button clicked");
+function audioPlayer() {
   if (playing) {
     console.log("Already playing");
     return;
@@ -68,7 +67,7 @@ $(".generate").on("click", function () {
     return;
   }
 
-  generateAudio();
+  generateAudio(text);
   $(".progress").css("width", "0%");
   if (durationTime && text === prevText) {
     $("#duration").text("0:00 / " + m + ":" + s);
@@ -76,9 +75,10 @@ $(".generate").on("click", function () {
     initialize();
   }
   $(".audio-player").show();
-  // audio.voice = voices[1];
+  if(voices.length>1){
+    audio.voice = voices[1];
+  }
   audio.volume = 1;
-  audio.text = text;
   speechSynthesis.speak(audio);
   startTime = performance.now();
   playing = true;
@@ -104,7 +104,7 @@ $(".generate").on("click", function () {
     $("#pause").hide();
     $("#play").show();
   };
-});
+}
 
 $("#play").on("click", function () {
   $("#play").hide();
@@ -113,7 +113,7 @@ $("#play").on("click", function () {
     audioPlayer();
   } else {
     speechSynthesis.resume();
-    startTime = performance.now() - elapsedTime * 1000 - 850;
+    startTime = performance.now() - (elapsedTime * 1000) - 850;
   }
   isPaused = false;
 });
@@ -130,14 +130,14 @@ $("#clear").on("click", function () {
   clear();
 });
 
-$("textarea#textinput").bind("input propertychange", function () {
-  if (playing) {
-    clear();
-  }
+$('textarea#textinput').bind('input propertychange', function() {
+    if(playing){
+        clear();
+    }
 });
 
-function clear() {
-  speechSynthesis.cancel();
+function clear(){
+    speechSynthesis.cancel();
   $(".audio-player").hide();
   initialize();
 }
