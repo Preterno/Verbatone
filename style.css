@@ -288,4 +288,8 @@ button{
   .for-flex {
     padding: 30px 1rem;
   }
+  .audio-player{
+    gap: 0.6rem;
+    font-size: 0.6rem;
+  }
 }
