@@ -75,6 +75,8 @@ function audioPlayer() {
     initialize();
   }
   $(".audio-player").show();
+  $("#play").hide();
+  $("#pause").show();
   if(voices.length>1){
     audio.voice = voices[1];
   }
