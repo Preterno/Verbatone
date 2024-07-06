@@ -1,7 +1,7 @@
 var audio;
 var playing = false,
   isPaused = false;
-var voices;
+var voices=[];
 var durationTime = 0,
   elapsedTime = 0,
   minutes,
