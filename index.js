@@ -77,7 +77,8 @@ function audioPlayer() {
   $(".audio-player").show();
   $("#play").hide();
   $("#pause").show();
-  if(voices.length>1){
+
+  if (voices.length > 1) {
     audio.voice = voices[1];
   }
   audio.volume = 1;
@@ -111,18 +112,20 @@ function audioPlayer() {
 $("#play").on("click", function () {
   $("#play").hide();
   $("#pause").show();
+  isPaused = false;
   if (durationTime === elapsedTime) {
     audioPlayer();
   } else {
+    playing = true;
     speechSynthesis.resume();
-    startTime = performance.now() - (elapsedTime * 1000) - 850;
+    startTime = performance.now() - elapsedTime * 1000 - 850;
   }
-  isPaused = false;
 });
 
 $("#pause").on("click", function () {
   speechSynthesis.pause();
   isPaused = true;
+  playing = false;
   $("#pause").hide();
   $("#play").show();
 });
@@ -132,14 +135,14 @@ $("#clear").on("click", function () {
   clear();
 });
 
-$('textarea#textinput').bind('input propertychange', function() {
-    if(playing){
-        clear();
-    }
+$("textarea#textinput").bind("input propertychange", function () {
+  if (playing) {
+    clear();
+  }
 });
 
-function clear(){
-    speechSynthesis.cancel();
+function clear() {
+  speechSynthesis.cancel();
   $(".audio-player").hide();
   initialize();
 }
