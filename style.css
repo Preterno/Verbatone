@@ -271,6 +271,9 @@ button {
   .textbox-flex {
     height: 15rem;
   }
+  .clear-button button img {
+    height: 1.75rem;
+  }
 }
 
 @media (max-width: 855px) {
@@ -283,10 +286,6 @@ button {
   .for-flex {
     padding-top: 60px;
     padding-bottom: 60px;
-  }
-
-  .clear-button button img {
-    height: 1.75rem;
   }
   
   body {
@@ -306,7 +305,7 @@ button {
     font-size: 0.4rem;
   }
   textarea {
-    padding: 0px 1.5rem;
+    padding-left: 1rem;
   }
 }
 @media (max-width: 600px) {
@@ -335,7 +334,7 @@ button {
     font-size: 1.4rem;
   }
   .buttons img {
-    height: 1.4rem;
+    height: 1.6rem;
   }
   textarea {
     font-size: 1.3rem;
