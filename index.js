@@ -1,7 +1,7 @@
 var audio;
 var playing = false,
   isPaused = false;
-var voices=[];
+var voices = [];
 var durationTime = 0,
   elapsedTime = 0,
   minutes,
@@ -11,6 +11,7 @@ var durationTime = 0,
   value,
   startTime;
 var prevText = "";
+var isText = true;
 
 $(".audio-player").hide();
 $("#play").hide();
@@ -55,15 +56,26 @@ function updateTimer() {
   $(".progress").css("width", value + "%");
 }
 
-function audioPlayer() {
+async function audioPlayer() {
   if (playing) {
     console.log("Already playing");
     return;
   }
 
-  var text = $("textarea#textinput").val();
+  var text;
+  if (isText) {
+    text = $("textarea#textinput").val();
+  } else {
+    try {
+      text = await fileData();
+      console.log("Extracted Text:", text);
+    } catch (error) {
+      console.error("Error extracting text from PDF:", error);
+    }
+  }
+
   if (!text) {
-    console.log("No text");
+    console.log("Enter text");
     return;
   }
 
@@ -86,7 +98,7 @@ function audioPlayer() {
   startTime = performance.now();
   playing = true;
 
-  let timerInterval = setInterval(function () {
+  var timerInterval = setInterval(function () {
     if (!isPaused && speechSynthesis.speaking) {
       updateTimer();
     }
@@ -133,12 +145,15 @@ $("#pause").on("click", function () {
 $("#clear").on("click", function () {
   $("textarea#textinput").val("");
   clear();
+  if (!isText) {
+    $("#file-input").val("");
+    $("label img").show();
+    $("label p").text("Choose a file.");
+  }
 });
 
 $("textarea#textinput").bind("input propertychange", function () {
-  if (playing) {
-    clear();
-  }
+  clear();
 });
 
 function clear() {
@@ -161,4 +176,83 @@ function initialize() {
   value = 0;
   $(".progress").css("width", "0%");
   $("#duration").text("0:00");
+}
+
+// For file upload
+$(".file-box").hide();
+
+$("#text-input").on("click", function () {
+  if (!isText) {
+    isText = true;
+    clear();
+    $("#textinput").show();
+    $(".file-box").hide();
+  }
+});
+
+$("#file-upload").on("click", function () {
+  if (isText) {
+    isText = false;
+    clear();
+    $(".file-box").show();
+    $("#textinput").hide();
+  }
+});
+
+function fileName() {
+  file = $("#file-input").prop("files");
+  console.log(file[0].name);
+  $("label img").hide();
+  $("label p").text(file[0].name + " is selected.");
+}
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js";
+
+async function fileData() {
+  var selectedFile = $("#file-input")[0].files[0];
+  if (selectedFile == undefined) {
+    console.log("File error");
+    return;
+  }
+
+  var reader = new FileReader();
+
+  return new Promise((resolve, reject) => {
+    reader.onload = function () {
+      var allText = "";
+
+      pdfjsLib
+        .getDocument({ data: new Uint8Array(reader.result) })
+        .promise.then(function (pdf) {
+          console.log(pdf.numPages);
+
+          var pagePromises = [];
+
+          for (var pageNo = 1; pageNo <= pdf.numPages; pageNo++) {
+            var pagePromise = pdf.getPage(pageNo).then(function (page) {
+              return page.getTextContent().then(function (textContent) {
+                var text = "";
+                for (var i = 0; i < textContent.items.length; i++) {
+                  text += textContent.items[i].str;
+                }
+                return text;
+              });
+            });
+            pagePromises.push(pagePromise);
+          }
+
+          Promise.all(pagePromises)
+            .then(function (texts) {
+              allText = texts.join("");
+              resolve(allText);
+            })
+            .catch(reject);
+        })
+        .catch(reject);
+    };
+
+    reader.onerror = reject; 
+    reader.readAsArrayBuffer(selectedFile);
+  });
 }
