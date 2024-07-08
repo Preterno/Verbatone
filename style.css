@@ -177,6 +177,7 @@ label p {
   margin: 0 auto;
   color: #000;
   font-size: 1.6rem;
+  text-align: center;
 }
 
 label img {
