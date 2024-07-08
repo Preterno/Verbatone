@@ -17,31 +17,37 @@
     <section class="header">
       <div class="navbar">
         <div class="name">
-          <p class="overlock-sc-regular"><span>Verba</span>Tone</p>
+          <p><span>Verba</span>Tone</p>
         </div>
         <div class="linked-in">
           <a href="#"><img src="./Assets/linkedin.svg" alt="LinkedIn" /></a>
         </div>
       </div>
     </section>
-    <section class="content roboto-light">
+    <section class="content">
       <div class="for-flex">
         <div class="text-flex">
           <h1 class="ibm-plex-sans-regular">
             Text to Speech using Web Speech API
           </h1>
           <p>
-            Explore text-to-speech capabilities powered by the Web Speech API, offering clear speech synthesis across multiple languages. Integration enhances accessibility and interactivity.
+            Explore text-to-speech capabilities powered by the Web Speech API,
+            offering clear speech synthesis across multiple languages.
+            Integration enhances accessibility and interactivity.
           </p>
           <h2 class="ibm-plex-sans-regular">
             Select a method to convert your text into speech
           </h2>
           <div class="buttons">
-            <button><img src="./Assets/text.svg" /> Text Input</button>
-            <button><img src="./Assets/upload.svg" /> File Upload</button>
+            <button id="text-input">
+              <img src="./Assets/text.svg" /> Text Input
+            </button>
+            <button id="file-upload">
+              <img src="./Assets/upload.svg" /> File Upload
+            </button>
           </div>
         </div>
-        <div class="right roboto-light">
+        <div class="right">
           <div class="textbox-flex">
             <div class="clear-button">
               <button id="clear">
@@ -53,6 +59,18 @@
               id="textinput"
               placeholder="Type or paste your text here to convert it to speech."
             ></textarea>
+            <form class="file-box">
+              <input
+                type="file"
+                id="file-input"
+                onchange="fileName()"
+                accept=".pdf"
+              />
+              <label for="file-input" id="file">
+                <img src="./Assets/fileupload.svg" />
+                <p>Choose a file.</p>
+              </label>
+            </form>
           </div>
           <div class="options">
             <div class="generate" onclick="audioPlayer()">
@@ -78,6 +96,8 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>
