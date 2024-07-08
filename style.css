@@ -285,6 +285,10 @@ button {
     padding-bottom: 60px;
   }
 
+  .clear-button button img {
+    height: 1.75rem;
+  }
+  
   body {
     position: absolute;
   }
@@ -300,6 +304,9 @@ button {
   .audio-player {
     gap: 0.55rem;
     font-size: 0.4rem;
+  }
+  textarea {
+    padding: 0px 1.5rem;
   }
 }
 @media (max-width: 600px) {
